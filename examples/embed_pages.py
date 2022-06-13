@@ -1,16 +1,9 @@
-import discord
 from discord import Embed
 from discord.ext import commands
 from pycord.ext import menus
 
-intents = discord.Intents.all()
-intents.members=True
-intents.message_content=True
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix="$")
 
-@bot.event
-async def on_ready():
-    print(bot.user.name + ' is online')
 
 class MyEmbedFieldPageSource(menus.ListPageSource):
     def __init__(self, data):
@@ -46,8 +39,8 @@ async def button_embed_field(ctx):
     await pages.start(ctx)
 
 
-@discord.slash_command(guild_ids=[882441738713718815])
-async def page(ctx: discord.ApplicationContext):
+@bot.command()
+async def reaction_embed_field(ctx):
     data = [
         ("Black", "#000000"),
         ("Blue", "#0000FF"),
@@ -61,10 +54,31 @@ async def page(ctx: discord.ApplicationContext):
         ("White", "#FFFFFF"),
         ("Yellow", "#FFFF00"),
     ]
-    pages = menus.ButtonMenuPages(
+    pages = menus.MenuPages(
         source=MyEmbedFieldPageSource(data),
+        clear_reactions_after=True,
+    )
+    await pages.start(ctx)
+
+
+class MyEmbedDescriptionPageSource(menus.ListPageSource):
+    def __init__(self, data):
+        super().__init__(data, per_page=6)
+
+    async def format_page(self, menu, entries):
+        embed = Embed(title="Entries", description="\n".join(entries))
+        embed.set_footer(text=f"Page {menu.current_page + 1}/{self.get_max_pages()}")
+        return embed
+
+
+@bot.command()
+async def button_embed_description(ctx):
+    data = [f"Description for entry #{num}" for num in range(1, 51)]
+    pages = menus.ButtonMenuPages(
+        source=MyEmbedDescriptionPageSource(data),
         clear_buttons_after=True,
     )
     await pages.start(ctx)
 
-bot.run("OTUwOTYxODczNzIzOTk4MjM4.YigiQg.ZlxLg4O25G3Kej8ta3sY48hIf0Y")
+
+bot.run("token")

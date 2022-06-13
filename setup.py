@@ -5,7 +5,7 @@ import re
 from setuptools import setup
 
 version = ""
-with open("nextcord/ext/menus/__init__.py") as f:
+with open("pycord/ext/menus/__init__.py") as f:
     match = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE)
     if match is None or match.group(1) is None:
         raise RuntimeError("version is not set")
@@ -73,12 +73,12 @@ setup(
     description="An extension module to make reaction and button component menus with pycord",
     long_description=long_description(),
     long_description_content_type="text/markdown",
-    url="https://github.com/pycord/pycord-ext-menus",
+    url="https://github.com/PranoyMajumdar/pycord-ext-menus",
     project_urls={
-        "Bug Tracker": "https://github.com/nextcord/nextcord-ext-menus/issues",
+        "Bug Tracker": "https://github.com/PranoyMajumdar/pycord-ext-menus",
     },
-    packages=["nextcord.ext.menus"],
-    license="MIT",
+    packages=["pycord.ext.menus"],
+    license="Apache License",
     python_requires=">=3.8.0",
     install_requires=[requirements()],
     extras_require=extras_require,
