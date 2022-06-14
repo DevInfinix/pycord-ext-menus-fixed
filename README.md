@@ -38,6 +38,3 @@ py -3 -m pip install -U pycord-ext-menus
 Copyright (c) 2021 Pranoy#0140
 
 -----------
-
-## Creadits
-This is the fork of nextcord-ext-menus.
