@@ -35,6 +35,6 @@ py -3 -m pip install -U pycord-ext-menus
 
 ## License
 
-Copyright (c) 2021 Pranoy#0140
+Copyright (c) 2021 Pranoy#0140 & Denver1
 
 -----------
