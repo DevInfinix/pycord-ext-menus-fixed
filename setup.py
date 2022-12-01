@@ -77,7 +77,7 @@ setup(
     project_urls={
         "Bug Tracker": "https://github.com/PranoyMajumdar/pycord-ext-menus",
     },
-    packages=["pycord.ext.menus"],
+    packages=["discord.ext.menus"],
     license="Apache License",
     python_requires=">=3.8.0",
     install_requires=[requirements()],
